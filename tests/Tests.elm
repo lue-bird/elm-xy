@@ -1,11 +1,11 @@
-module Tests exposing (..)
+module Tests exposing (suite)
 
 import Expect
 import Test exposing (Test, describe, test)
-import XY exposing (XY)
+import Xy exposing (Xy)
 
 
-xy : XY Float
+xy : Xy Float
 xy =
     ( 27, -5.2 )
 

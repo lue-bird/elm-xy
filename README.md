@@ -1,4 +1,4 @@
-## xy
+## Xy
 
 Often, a tuple is used to describe 2 coordinates.
 
@@ -14,8 +14,8 @@ This package contains simple helpers to manipulate & read 2-coordinate-tuples.
 
 ```elm
 type alias Model =
-    { playerPosition : XY Float
-    , playerVelocity : XY Float
+    { playerPosition : Xy Float
+    , playerVelocity : Xy Float
     }
 
 update msg model =
@@ -24,11 +24,11 @@ update msg model =
             { model
                 | playerPosition =
                     model.playerPosition
-                        |> XY.map2 (+) model.playerVelocity
+                        |> Xy.map2 (+) model.playerVelocity
                 , playerVelocity =
                     model.playerVelocity
-                        |> XY.map ((*) 0.98)
-                        |> XY.mapY (\y -> y - 1)
+                        |> Xy.map ((*) 0.98)
+                        |> Xy.mapY (\y -> y - 1)
             }
 
 view { playerPosition } =
