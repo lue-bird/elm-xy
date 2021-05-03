@@ -1,4 +1,4 @@
-module XY exposing (XY, both, combine2, map, mapX, mapXY, mapY, one, serialize, toString, x, xy, y, zero)
+module XY exposing (XY, both, map, map2, mapX, mapXY, mapY, one, serialize, toString, x, xy, y, zero)
 
 import Serialize
 
@@ -57,8 +57,8 @@ map mapBoth =
     Tuple.mapBoth mapBoth mapBoth
 
 
-combine2 : (a -> b -> combined) -> XY a -> XY b -> XY combined
-combine2 combine a b =
+map2 : (a -> b -> combined) -> XY a -> XY b -> XY combined
+map2 combine a b =
     b |> mapXY (combine (x a)) (combine (y a))
 
 
