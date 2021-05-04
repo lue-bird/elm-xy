@@ -17,7 +17,7 @@ examples:
     polygon : List ( Float, Float ) -> Shape
     ```
 
-This package contains simple helpers to _create, manipulate & read 2-coordinate-tuples_.
+This package contains simple helpers to _create, modify & read 2-coordinate-tuples_.
 
 ```elm
 import Xy exposing (Xy)
