@@ -1,8 +1,8 @@
 ## Xy
 
-Often, a tuple is used to describe 2 coordinates.
+Commonly, a tuple is used to describe 2 coordinates `( x, y )`.
 
-examples: [`Collage.shift`](https://package.elm-lang.org/packages/timjs/elm-collage/latest/Collage#shift) & [`Collage.polygon`](https://package.elm-lang.org/packages/timjs/elm-collage/latest/Collage#polygon)
+examples: [`Collage.shift`](https://package.elm-lang.org/packages/timjs/elm-collage/latest/Collage#shift), [`Collage.polygon`](https://package.elm-lang.org/packages/timjs/elm-collage/latest/Collage#polygon)
 
 ```elm
 shift : ( Float, Float ) -> Collage msg -> Collage msg
@@ -10,9 +10,11 @@ shift : ( Float, Float ) -> Collage msg -> Collage msg
 polygon : List ( Float, Float ) -> Shape
 ```
 
-This package contains simple helpers to manipulate & read 2-coordinate-tuples.
+This package contains simple helpers to _create, manipulate & read 2-coordinate-tuples_.
 
 ```elm
+import Xy exposing (Xy)
+
 type alias Model =
     { playerPosition : Xy Float
     , playerVelocity : Xy Float
