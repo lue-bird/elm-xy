@@ -1,11 +1,10 @@
 module Xy exposing
     ( Xy
-    , both, zero, one, direction
+    , xy, both, zero, one, direction
     , x, y
-    , toString, map, map2
+    , toString, map, mapXY, map2
     , mapX, mapY
     , serialize
-    , mapXY, xy
     )
 
 {-|
@@ -15,7 +14,7 @@ module Xy exposing
 
 ## create
 
-@docs both, zero, one, direction
+@docs xy, both, zero, one, direction
 
 
 ## scan
@@ -25,7 +24,7 @@ module Xy exposing
 
 ## transform
 
-@docs toString, map, mapXy, map2
+@docs toString, map, mapXY, map2
 
 
 ### modify
