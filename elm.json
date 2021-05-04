@@ -1,11 +1,11 @@
 {
     "type": "package",
-    "name": "indique/elm-test-extra",
-    "summary": "x & y coordinates",
+    "name": "lue-bird/elm-xy",
+    "summary": "( x, y )",
     "license": "MIT",
     "version": "1.0.0",
     "exposed-modules": [
-        "Translate"
+        "Xy"
     ],
     "elm-version": "0.19.1 <= v < 0.20.0",
     "dependencies": {
