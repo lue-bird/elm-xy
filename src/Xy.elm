@@ -1,11 +1,11 @@
 module Xy exposing
     ( Xy
-    , both, zero, one, rotation
+    , both, zero, one, direction
     , x, y
     , toString, map, map2
     , mapX, mapY
     , serialize
-    , mapXY
+    , mapXY, xy
     )
 
 {-|
@@ -15,7 +15,7 @@ module Xy exposing
 
 ## create
 
-@docs Xy, both, zero, one, rotation
+@docs both, zero, one, direction
 
 
 ## scan
@@ -89,18 +89,18 @@ one =
     both 1
 
 
-{-| Express the rotation as a `Xy`-vector.
+{-| Express the direction as a `Xy`-vector.
 
-    Xy.rotation (turns (1/6))
+    Xy.direction (turns (1/6))
     --> ( 0.5000000000000001, 0.8660254037844386 )
 
-    fromAbsAndRotation length rotation =
-        Xy.rotation rotation
+    fromAbsAndRotation length direction =
+        Xy.direction direction
             >> Xy.map ((*) length)
 
 -}
-rotation : Float -> Xy Float
-rotation radians =
+direction : Float -> Xy Float
+direction radians =
     both radians |> mapXY cos sin
 
 
