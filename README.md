@@ -2,13 +2,20 @@
 
 Commonly, a tuple is used to describe 2 coordinates `( x, y )`.
 
-examples: [`Collage.shift`](https://package.elm-lang.org/packages/timjs/elm-collage/latest/Collage#shift), [`Collage.polygon`](https://package.elm-lang.org/packages/timjs/elm-collage/latest/Collage#polygon)
+examples:
+  - [`Playground.polygon`](https://package.elm-lang.org/packages/justgook/webgl-playground/5.0.0/Playground#polygon), [`Playground.toXY`](https://package.elm-lang.org/packages/justgook/webgl-playground/5.0.0/Playground#toXY), ...
 
-```elm
-shift : ( Float, Float ) -> Collage msg -> Collage msg
+    ```elm
+    polygon : Color -> List ( Float, Float ) -> Shape
 
-polygon : List ( Float, Float ) -> Shape
-```
+    toXY : Keyboard -> ( Float, Float )
+    ```
+  - [`Collage.shift`](https://package.elm-lang.org/packages/timjs/elm-collage/latest/Collage#shift), [`Collage.polygon`](https://package.elm-lang.org/packages/timjs/elm-collage/latest/Collage#polygon), ...
+    ```elm
+    shift : ( Float, Float ) -> Collage msg -> Collage msg
+
+    polygon : List ( Float, Float ) -> Shape
+    ```
 
 This package contains simple helpers to _create, manipulate & read 2-coordinate-tuples_.
 
