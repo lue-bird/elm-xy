@@ -88,7 +88,7 @@ one =
     both 1
 
 
-{-| Express the direction as a `Xy`-vector.
+{-| Express the rotation as a `Xy`-vector.
 
     Xy.direction (turns (1/6))
     --> ( 0.5000000000000001, 0.8660254037844386 )
