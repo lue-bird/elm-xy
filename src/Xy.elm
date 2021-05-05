@@ -3,7 +3,7 @@ module Xy exposing
     , xy, both, zero, one, direction
     , x, y
     , mapX, mapY
-    , map, mapXY, map2
+    , map, mapXY, map2, toAngle
     , serialize
     )
 
@@ -29,7 +29,7 @@ module Xy exposing
 
 ## transform
 
-@docs map, mapXY, map2
+@docs map, mapXY, map2, toAngle
 
 
 ## extra
@@ -88,12 +88,12 @@ one =
     both 1
 
 
-{-| Express the rotation as a `Xy`-vector.
+{-| Express the angle as a `Xy`-vector.
 
     Xy.direction (turns (1/6))
     --> ( 0.5000000000000001, 0.8660254037844386 )
 
-    fromAbsAndRotation length direction =
+    fromLengthAndRotation length direction =
         Xy.direction direction
             >> Xy.map ((*) length)
 
@@ -204,6 +204,22 @@ map2 :
     -> Xy combinedCoordinate
 map2 combine a b =
     b |> mapXY (combine (x a)) (combine (y a))
+
+
+{-| The angle (in radians) to an `Xy`.
+
+    Xy.toAngle ( 1, 1 ) --> pi/4 radians or 45°
+
+    Xy.toAngle ( 1, -1 ) --> 3*pi/4 radians or 135°
+
+    Xy.toAngle ( -1, -1 ) --> 5*pi/4 radians or 225°
+
+    Xy.toAngle ( -1, 1 ) --> 7*pi/4 radians or 315°
+
+-}
+toAngle : Xy Float -> Float
+toAngle direction_ =
+    atan2 (y direction_) (x direction_)
 
 
 {-| A [`Codec`](https://package.elm-lang.org/packages/MartinSStewart/elm-serialize/latest/) to serialize `Xy`s.
