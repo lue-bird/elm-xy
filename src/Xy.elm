@@ -2,8 +2,8 @@ module Xy exposing
     ( Xy
     , xy, both, zero, one, direction
     , x, y
-    , toString, map, mapXY, map2
     , mapX, mapY
+    , map, mapXY, map2
     , serialize
     )
 
@@ -22,14 +22,14 @@ module Xy exposing
 @docs x, y
 
 
-## transform
-
-@docs toString, map, mapXY, map2
-
-
 ### modify
 
 @docs mapX, mapY
+
+
+## transform
+
+@docs map, mapXY, map2
 
 
 ## extra
@@ -63,9 +63,9 @@ xy =
     Xy.both 0 --> ( 0, 0 )
 
 -}
-both : a -> Xy a
-both a =
-    xy a a
+both : coordinate -> Xy coordinate
+both valueOfBothCoordinates =
+    xy valueOfBothCoordinates valueOfBothCoordinates
 
 
 {-| Construct a `Xy` where the x & y coordinates are 0.
@@ -73,7 +73,7 @@ both a =
     Xy.zero --> ( 0, 0 )
 
 -}
-zero : Xy number
+zero : Xy numberCoordinate
 zero =
     both 0
 
@@ -83,7 +83,7 @@ zero =
     Xy.one --> ( 1, 1 )
 
 -}
-one : Xy number
+one : Xy numberCoordinate
 one =
     both 1
 
@@ -131,30 +131,61 @@ y =
 -- ## modify
 
 
-mapX : (a -> a) -> Xy a -> Xy a
+{-| Update the x coordinate based on its current value.
+
+    flipX =
+        XY.mapX (\x -> -x)
+
+-}
+mapX :
+    (coordinate -> coordinate)
+    -> Xy coordinate
+    -> Xy coordinate
 mapX xUpdate =
     Tuple.mapFirst xUpdate
 
 
-mapY : (a -> a) -> Xy a -> Xy a
+{-| Update the y coordinate based on its current value.
+
+    flipY =
+        XY.mapY (\y -> -y)
+
+-}
+mapY :
+    (coordinate -> coordinate)
+    -> Xy coordinate
+    -> Xy coordinate
 mapY xUpdate =
     Tuple.mapSecond xUpdate
 
 
-mapXY : (a -> mapped) -> (a -> mapped) -> Xy a -> Xy mapped
+{-| Apply a different function to the x & y coordinate.
+
+    ( 4.567, 4.321 ) |> Xy.mapXY floor ceiling
+    --> ( 4, 5 ) : Xy Int
+
+-}
+mapXY :
+    (coordinate -> mappedCoordinate)
+    -> (coordinate -> mappedCoordinate)
+    -> Xy coordinate
+    -> Xy mappedCoordinate
 mapXY xMap yMap =
     Tuple.mapBoth xMap yMap
 
 
-{-| Apply a function to both coordinates.
+{-| Apply the same function to both coordinates.
 
     ( 4.567, 4.321 ) |> Xy.map round
-    --> ( 5, 4 )
+    --> ( 5, 4 ) : Xy Int
 
 -}
-map : (a -> mapped) -> Xy a -> Xy mapped
-map mapBoth =
-    Tuple.mapBoth mapBoth mapBoth
+map :
+    (coordinate -> mappedCoordinate)
+    -> Xy coordinate
+    -> Xy mappedCoordinate
+map xAnYMap =
+    mapXY xAnYMap xAnYMap
 
 
 {-| Apply a function combining the x & y coordinates of 2 `Xy`s.
@@ -166,22 +197,24 @@ map mapBoth =
     --> ( 15, 6 )
 
 -}
-map2 : (a -> b -> combined) -> Xy a -> Xy b -> Xy combined
+map2 :
+    (aCoordinate -> bCoordinate -> combinedCoordinate)
+    -> Xy aCoordinate
+    -> Xy bCoordinate
+    -> Xy combinedCoordinate
 map2 combine a b =
     b |> mapXY (combine (x a)) (combine (y a))
 
 
-{-| A short string showing both coordinates in a tuple.
+{-| A [`Codec`](https://package.elm-lang.org/packages/MartinSStewart/elm-serialize/latest/) to serialize `Xy`s.
 
-    ( 3, 5 ) --> "( 3, 5 )"
+    serializePoint : Serialize.Codec error (Xy Int)
+    serializePoint =
+        Xy.serialize Serialize.int
 
 -}
-toString : (a -> String) -> Xy a -> String
-toString valueToString =
-    map valueToString
-        >> (\( x_, y_ ) -> "( x " ++ x_ ++ " | y " ++ y_ ++ " )")
-
-
-serialize : Serialize.Codec error a -> Serialize.Codec error (Xy a)
+serialize :
+    Serialize.Codec error coordinate
+    -> Serialize.Codec error (Xy coordinate)
 serialize serializeCoordinate =
     Serialize.tuple serializeCoordinate serializeCoordinate
