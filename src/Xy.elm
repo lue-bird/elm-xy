@@ -22,7 +22,7 @@ module Xy exposing
 @docs x, y
 
 
-### modify
+## modify
 
 @docs mapX, mapY
 
