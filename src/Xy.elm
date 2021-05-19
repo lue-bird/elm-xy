@@ -179,6 +179,9 @@ mapXY xMap yMap =
     ( 4.567, 4.321 ) |> Xy.map round
     --> ( 5, 4 ) : Xy Int
 
+    opposite =
+        Xy.map (\coord -> -coord)
+
 -}
 map :
     (coordinate -> mappedCoordinate)
