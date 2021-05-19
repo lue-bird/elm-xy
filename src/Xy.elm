@@ -187,8 +187,8 @@ map :
     (coordinate -> mappedCoordinate)
     -> Xy coordinate
     -> Xy mappedCoordinate
-map xAndYMap =
-    mapXY xAndYMap xAndYMap
+map mapBothXAndY =
+    mapXY mapBothXAndY mapBothXAndY
 
 
 {-| Apply a function combining the x & y coordinates of 2 `Xy`s.
