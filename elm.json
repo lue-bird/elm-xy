@@ -1,7 +1,7 @@
 {
     "type": "package",
     "name": "lue-bird/elm-xy",
-    "summary": "( x, y ): create, modify, read",
+    "summary": "( x, y ): create, transform, read",
     "license": "MIT",
     "version": "1.0.0",
     "exposed-modules": [
