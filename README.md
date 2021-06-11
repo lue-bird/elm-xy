@@ -22,7 +22,7 @@ examples:
     polygon : List ( Float, Float ) -> Shape
     ```
 
-This package contains simple helpers to _create, modify & read 2-coordinate-tuples_.
+This package contains simple helpers to _create, transform & read 2-coordinate-tuples_.
 
 ```elm
 import Xy exposing (Xy)
@@ -50,4 +50,25 @@ view { playerPosition } =
         |> Collage.filled (Collage.uniform Color.red)
         |> Collage.shift playerPosition
         |> Collage.Render.svg
+```
+
+another example
+
+```elm
+type alias Model =
+    { windowSize : Xy Float }
+
+init =
+    ( { windowSize = Xy.zero }
+    , Browser.Dom.getViewport
+        |> Task.perform
+            (.viewport >> Xy.fromSize >> Resized)
+    )
+
+subscriptions : Sub Msg
+subscriptions =
+    Browser.Events.onResize
+        (\w h ->
+            Resized (( w, h ) |> Xy.map toFloat)
+        )
 ```
