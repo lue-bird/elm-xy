@@ -44,6 +44,7 @@ module Xy exposing
 
 -}
 
+import Random
 import Serialize
 
 
@@ -124,7 +125,7 @@ one =
     both 1
 
 
-{-| Express the angle as a `Xy`-vector.
+{-| Express the angle as a normalized `Xy`-vector.
 
     Xy.direction (turns (1/6))
     --> ( 0.5000000000000001, 0.8660254037844386 )
@@ -248,6 +249,19 @@ map2 combine a b =
     b |> mapXY (combine (x a)) (combine (y a))
 
 
+{-| Use the x and the y coordinate to return a result.
+
+    ( 3, 4 ) |> Xy.to max --> 4
+
+    toAngle =
+        to atan2
+
+-}
+to : (coordinate -> coordinate -> result) -> Xy coordinate -> result
+to xyToResult =
+    \( x_, y_ ) -> xyToResult x_ y_
+
+
 {-| The angle (in radians) to an `Xy`.
 
     Xy.toAngle ( 1, 1 ) --> pi/4 radians or 45°
@@ -261,7 +275,24 @@ map2 combine a b =
 -}
 toAngle : Xy Float -> Float
 toAngle direction_ =
-    atan2 (y direction_) (x direction_)
+    to atan2 direction_
+
+
+{-| The length of the hypotenuse in
+
+```noformatingples
+ ^
+x|\
+ | \ length
+ |  \
+ 0--->
+    y
+```
+
+-}
+length : Xy Float -> Float
+length =
+    to (\x_ y_ -> sqrt (x_ ^ 2 + y_ ^ 2))
 
 
 {-| A [`Codec`](https://package.elm-lang.org/packages/MartinSStewart/elm-serialize/latest/) to serialize `Xy`s.
@@ -275,4 +306,21 @@ serialize :
     Serialize.Codec error coordinate
     -> Serialize.Codec error (Xy coordinate)
 serialize serializeCoordinate =
-    Serialize.tuple serializeCoordinate serializeCoordinate
+    both serializeCoordinate |> to Serialize.tuple
+
+
+{-| A `Generator` for random `Xy`s.
+
+    randomSpeed =
+        Xy.random (XY.both (Random.float -1 1))
+
+    randomPoint =
+        Xy.random
+            ( Random.float left right
+            , Random.float bottom top
+            )
+
+-}
+random : Xy (Random.Generator coordinate) -> Random.Generator (Xy coordinate)
+random randomCoordinates =
+    randomCoordinates |> to (Random.map2 xy)
