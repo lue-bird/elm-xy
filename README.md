@@ -65,7 +65,6 @@ init =
             (.viewport >> Xy.fromSize >> Resized)
     )
 
-subscriptions : Sub Msg
 subscriptions =
     Browser.Events.onResize
         (\w h ->
