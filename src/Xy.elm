@@ -1,6 +1,7 @@
 module Xy exposing
     ( Xy
     , xy, both, zero, one, direction
+    , fromXY, fromSize
     , x, y
     , mapX, mapY
     , map, mapXY, map2, toAngle
@@ -15,6 +16,11 @@ module Xy exposing
 ## create
 
 @docs xy, both, zero, one, direction
+
+
+### from record
+
+@docs fromXY, fromSize
 
 
 ## scan
@@ -56,6 +62,36 @@ type alias Xy coordinate =
 xy : coordinate -> coordinate -> Xy coordinate
 xy =
     Tuple.pair
+
+
+{-| Construct a `Xy` from the `x` and `y` fields contained in a record.
+
+    initialPosition : Xy Float
+    initialPosition =
+        Browser.getViewport
+            |> Task.perform (.viewport >> Xy.fromXY)
+
+[Browser.getViewport link](https://package.elm-lang.org/packages/elm/browser/latest/Browser-Dom#getViewport).
+
+-}
+fromXY : { record | x : coordinate, y : coordinate } -> Xy coordinate
+fromXY record =
+    xy record.x record.y
+
+
+{-| Construct a `Xy` from the `width` and `height` fields contained in a record.
+
+    initialSize : Xy Float
+    initialSize =
+        Browser.getViewport
+            |> Task.perform (.viewport >> Xy.fromSize)
+
+[Browser.getViewport link](https://package.elm-lang.org/packages/elm/browser/latest/Browser-Dom#getViewport).
+
+-}
+fromSize : { record | x : coordinate, y : coordinate } -> Xy coordinate
+fromSize record =
+    xy record.x record.y
 
 
 {-| Construct a `Xy` from the same value for the x & y coordinates.
