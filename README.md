@@ -1,6 +1,11 @@
 ## Xy
 
-Commonly, a tuple is used to describe 2 coordinates `( x, y )`.
+Commonly, a tuple is used to describe 2 coordinates `( x, y )` of
+
+  - a point
+  - a dimension
+  - a velocity
+  - ...
 
 examples:
   - [`Playground.polygon`](https://package.elm-lang.org/packages/justgook/webgl-playground/5.0.0/Playground#polygon), [`Playground.toXY`](https://package.elm-lang.org/packages/justgook/webgl-playground/5.0.0/Playground#toXY), ...
