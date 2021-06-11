@@ -2,10 +2,10 @@ module Xy exposing
     ( Xy
     , xy, both, zero, one, direction
     , fromXY, fromSize
-    , x, y
+    , x, y, length
     , mapX, mapY
-    , map, mapXY, map2, toAngle
-    , serialize
+    , map, mapXY, map2, toAngle, to
+    , serialize, random
     )
 
 {-|
@@ -25,7 +25,7 @@ module Xy exposing
 
 ## scan
 
-@docs x, y
+@docs x, y, length
 
 
 ## modify
@@ -35,12 +35,12 @@ module Xy exposing
 
 ## transform
 
-@docs map, mapXY, map2, toAngle
+@docs map, mapXY, map2, toAngle, to
 
 
 ## extra
 
-@docs serialize
+@docs serialize, random
 
 -}
 
@@ -292,7 +292,7 @@ x|\
 -}
 length : Xy Float -> Float
 length =
-    to (\x_ y_ -> sqrt (x_ ^ 2 + y_ ^ 2))
+    sqrt << to (+) << map (\c -> c ^ 2)
 
 
 {-| A [`Codec`](https://package.elm-lang.org/packages/MartinSStewart/elm-serialize/latest/) to serialize `Xy`s.
