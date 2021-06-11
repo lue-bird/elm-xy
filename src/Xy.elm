@@ -89,9 +89,9 @@ fromXY record =
 [Browser.getViewport link](https://package.elm-lang.org/packages/elm/browser/latest/Browser-Dom#getViewport).
 
 -}
-fromSize : { record | x : coordinate, y : coordinate } -> Xy coordinate
+fromSize : { record | width : coordinate, height : coordinate } -> Xy coordinate
 fromSize record =
-    xy record.x record.y
+    xy record.width record.height
 
 
 {-| Construct a `Xy` from the same value for the x & y coordinates.
@@ -129,8 +129,8 @@ one =
     Xy.direction (turns (1/6))
     --> ( 0.5000000000000001, 0.8660254037844386 )
 
-    fromLengthAndRotation length direction =
-        Xy.direction direction
+    fromLengthAndRotation length rotation =
+        Xy.direction rotation
             >> Xy.map ((*) length)
 
 -}
@@ -217,6 +217,9 @@ mapXY xMap yMap =
 
     opposite =
         Xy.map (\coord -> -coord)
+
+    scale factor =
+        Xy.map ((*) factor)
 
 -}
 map :
