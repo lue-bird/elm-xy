@@ -5,3 +5,5 @@
 - added `to`
 - added `length`
 - added `random`
+- added `normalize`
+- corrected `toAngle`
