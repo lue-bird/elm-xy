@@ -4,7 +4,7 @@ module Xy exposing
     , fromXY, fromSize
     , x, y, length
     , mapX, mapY
-    , map, mapXY, map2, toAngle, to
+    , map, mapXY, map2, toAngle, to, normalize
     , serialize, random
     )
 
@@ -35,7 +35,7 @@ module Xy exposing
 
 ## transform
 
-@docs map, mapXY, map2, toAngle, to
+@docs map, mapXY, map2, toAngle, to, normalize
 
 
 ## extra
@@ -125,7 +125,7 @@ one =
     both 1
 
 
-{-| Express the angle as a normalized `Xy`-vector.
+{-| Express the angle as a unit vector.
 
     Xy.direction (turns (1/6))
     --> ( 0.5000000000000001, 0.8660254037844386 )
@@ -253,40 +253,62 @@ map2 combine a b =
 
     ( 3, 4 ) |> Xy.to max --> 4
 
-    toAngle =
-        to atan2
-
 -}
 to : (coordinate -> coordinate -> result) -> Xy coordinate -> result
 to xyToResult =
     \( x_, y_ ) -> xyToResult x_ y_
 
 
-{-| The angle (in radians) to an `Xy`.
+{-| The angle (in radians).
+
+```noformatingples
+     ^
+    /|y
+   / |
+  /⍺ |
+ 0--->
+    x
+```
 
     Xy.toAngle ( 1, 1 ) --> pi/4 radians or 45°
 
-    Xy.toAngle ( 1, -1 ) --> 3*pi/4 radians or 135°
+    Xy.toAngle ( -1, 1 ) --> 3*pi/4 radians or 135°
 
-    Xy.toAngle ( -1, -1 ) --> 5*pi/4 radians or 225°
+    Xy.toAngle ( -1, -1 ) --> -3*pi/4 radians or 225°
 
-    Xy.toAngle ( -1, 1 ) --> 7*pi/4 radians or 315°
+    Xy.toAngle ( 1, -1 ) --> -pi/4 radians or 315°
 
 -}
 toAngle : Xy Float -> Float
-toAngle direction_ =
-    to atan2 direction_
+toAngle =
+    \( x_, y_ ) -> atan2 y_ x_
 
 
-{-| The length of the hypotenuse in
+{-| Convert to a unit vector.
+
+    ( 3, 4 ) |> Xy.normalize
+    --> ( 3/5, 4/5 )
+
+-}
+normalize : Xy Float -> Xy Float
+normalize =
+    \xy_ ->
+        let
+            length_ =
+                length xy_
+        in
+        xy_ |> map (\c -> c / length_)
+
+
+{-| The length of the hypotenuse
 
 ```noformatingples
  ^
-x|\
+y|\
  | \ length
  |  \
  0--->
-    y
+    x
 ```
 
 -}
