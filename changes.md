@@ -6,4 +6,5 @@
 - added `length`
 - added `random`
 - added `normalize`
+- added `random`
 - corrected `toAngle`
