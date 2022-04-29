@@ -1,5 +1,9 @@
 # changelog
 
+#### 1.1.3
+
+- readme @deprecated note "do different" to "-ly" corrected
+
 #### 1.1.2
 
 - readme claim `direction length = 0` to `= 1` corrected
