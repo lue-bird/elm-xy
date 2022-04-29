@@ -1,5 +1,9 @@
 # changelog
 
+### 1.1.1
+
+- @deprecated, see readme
+
 ### 1.1.0
 
 - added `to`
