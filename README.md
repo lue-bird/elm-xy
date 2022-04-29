@@ -35,11 +35,11 @@ This package contains simple helpers to _create, transform & read 2-coordinate-t
 
 > 3. safety: `Xy.normalize`, `Xy.direction`, ... should return a type that keeps its promise of `\xy -> (xy |> Xy.length) = 0`
 
-> → `Vector2d`: https://dark.elm.dmy.fr/packages/ianmackenzie/elm-geometry/latest/Vector2d
+> → [`Vector2d`](https://dark.elm.dmy.fr/packages/ianmackenzie/elm-geometry/latest/Vector2d)
 
-> → `Point2d`: https://dark.elm.dmy.fr/packages/ianmackenzie/elm-geometry/latest/Point2d
+> → [`Point2d`](https://dark.elm.dmy.fr/packages/ianmackenzie/elm-geometry/latest/Point2d)
 
-> → `Direction2d`: https://dark.elm.dmy.fr/packages/ianmackenzie/elm-geometry/latest/Direction2d
+> → [`Direction2d`](https://dark.elm.dmy.fr/packages/ianmackenzie/elm-geometry/latest/Direction2d)
 
 > → ...
 
