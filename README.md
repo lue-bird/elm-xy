@@ -25,24 +25,18 @@ examples:
 This package contains simple helpers to _create, transform & read 2-coordinate-tuples_.
 
 > ... Or at least it did. Now wait here.
-
+> 
 > In retrospect: Is this really a good idea?
-
+> 
 > 1. descriptiveness: Do you prefer `( 3, 4 )` or `Dimensions { width = 3, height = 4 }`?
-
+> 
 > 2. units: Do you prefer `( 3, 4 )` or `fromTuple Pixels.int ( 3, 4 )`?
 >    Enjoy your time with [elm-units](https://package.elm-lang.org/packages/ianmackenzie/elm-units/latest) and thank me later!
-
+> 
 > 3. safety: `Xy.normalize`, `Xy.direction`, ... should return a type that keeps its promise of `\xy -> (xy |> Xy.length) = 0`
 
-> → [`Vector2d`](https://dark.elm.dmy.fr/packages/ianmackenzie/elm-geometry/latest/Vector2d)
-
-> → [`Point2d`](https://dark.elm.dmy.fr/packages/ianmackenzie/elm-geometry/latest/Point2d)
-
-> → [`Direction2d`](https://dark.elm.dmy.fr/packages/ianmackenzie/elm-geometry/latest/Direction2d)
-
-> → ...
-
+> → [`Vector2d`](https://dark.elm.dmy.fr/packages/ianmackenzie/elm-geometry/latest/Vector2d), [`Point2d`](https://dark.elm.dmy.fr/packages/ianmackenzie/elm-geometry/latest/Point2d), [`Direction2d`](https://dark.elm.dmy.fr/packages/ianmackenzie/elm-geometry/latest/Direction2d), ...
+> 
 > [elm-geometry](https://dark.elm.dmy.fr/packages/ianmackenzie/elm-geometry/latest/) shows how to do it right.
 > 
 > What about the extra verbosity when converting to/from tuples?
