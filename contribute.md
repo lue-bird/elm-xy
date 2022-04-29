@@ -1,3 +1,5 @@
+> @deprecated, see readme
+
 ## Contribute
 
 **Contributing is appreciated! 💙**

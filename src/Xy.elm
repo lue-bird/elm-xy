@@ -8,7 +8,7 @@ module Xy exposing
     , serialize, random
     )
 
-{-|
+{-| @deprecated, see readme
 
 @docs Xy
 
