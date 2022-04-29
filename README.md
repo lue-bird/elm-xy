@@ -24,6 +24,43 @@ examples:
 
 This package contains simple helpers to _create, transform & read 2-coordinate-tuples_.
 
+> ... Or at least it did. Now wait here.
+
+> In retrospect: Is this really a good idea?
+
+> 1. descriptiveness: Do you prefer `( 3, 4 )` or `Dimensions { width = 3, height = 4 }`?
+
+> 2. units: Do you prefer `( 3, 4 )` or `fromTuple Pixels.int ( 3, 4 )`?
+>    Enjoy your time with [elm-units](https://package.elm-lang.org/packages/ianmackenzie/elm-units/latest) and thank me later!
+
+> 3. safety: `Xy.normalize`, `Xy.direction`, ... should return a type that keeps its promise of `\xy -> (xy |> Xy.length) = 0`
+
+> → `Vector2d`: https://dark.elm.dmy.fr/packages/ianmackenzie/elm-geometry/latest/Vector2d
+
+> → `Point2d`: https://dark.elm.dmy.fr/packages/ianmackenzie/elm-geometry/latest/Point2d
+
+> → `Direction2d`: https://dark.elm.dmy.fr/packages/ianmackenzie/elm-geometry/latest/Direction2d
+
+> → ...
+
+> [elm-geometry](https://dark.elm.dmy.fr/packages/ianmackenzie/elm-geometry/latest/) shows how to do it right.
+> 
+> What about the extra verbosity when converting to/from tuples?
+> Cross that out of your head. explicitness >> verbosity.
+> That's why you're here in elm land. Stay a little longer :)
+> 
+> → this package is @deprecated and won't be maintained further
+> 
+> On tuples, [`hayleigh-dot-dev/tuple-extra`](https://dark.elm.dmy.fr/packages/hayleigh-dot-dev/tuple-extra/latest/Tuple-Extra)
+> will supply you with all you need. If not, throw a PR there.
+> 
+> If you ever find yourself writing a package yourself, here's some tips so you don't have to one day write this.
+> - Focus on one thing: not all of these... dimensions, points, vectorial stuff, handling tuples where left = right, ...
+> - Look up what people created before you. Helpful tools: [tarokuriyama's deep search](https://tarokuriyama.com/elmsearch/), [korban's catalog](https://korban.net/elm/catalog/)
+> 
+> Below an earlier example using this package.
+> See where you would do things different
+
 ```elm
 import Xy exposing (Xy)
 
