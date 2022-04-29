@@ -53,7 +53,7 @@ This package contains simple helpers to _create, transform & read 2-coordinate-t
 > - Look up what people created before you. Helpful tools: [tarokuriyama's deep search](https://tarokuriyama.com/elmsearch/), [korban's catalog](https://korban.net/elm/catalog/)
 > 
 > Below an earlier example using this package.
-> See where you would do things different
+> See where you would do things differently
 
 ```elm
 import Xy exposing (Xy)
