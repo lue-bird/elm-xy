@@ -33,7 +33,7 @@ This package contains simple helpers to _create, transform & read 2-coordinate-t
 > 2. units: Do you prefer `( 3, 4 )` or `fromTuple Pixels.int ( 3, 4 )`?
 >    Enjoy your time with [elm-units](https://package.elm-lang.org/packages/ianmackenzie/elm-units/latest) and thank me later!
 > 
-> 3. safety: `Xy.normalize`, `Xy.direction`, ... should return a type that keeps its promise of `\xy -> (xy |> Xy.length) = 0`
+> 3. safety: `Xy.normalize`, `Xy.direction`, ... should return a type that keeps its promise of `\xy -> (xy |> Xy.length) = 1`
 
 > → [`Vector2d`](https://dark.elm.dmy.fr/packages/ianmackenzie/elm-geometry/latest/Vector2d), [`Point2d`](https://dark.elm.dmy.fr/packages/ianmackenzie/elm-geometry/latest/Point2d), [`Direction2d`](https://dark.elm.dmy.fr/packages/ianmackenzie/elm-geometry/latest/Direction2d), ...
 > 
